@@ -4,9 +4,13 @@ import App from "./App";
 import { Provider } from 'react-redux';
 import reportWebVitals from "./reportWebVitals";
 import store from "./store";
+import Hii from "./Context/Hii"
 ReactDOM.render(
   <Provider store={store}>
+
     <App />
+    {/**  this is for to understand context Api*/}
+    {/* <Hii /> */}
   </Provider>,
   document.getElementById("root")
 );

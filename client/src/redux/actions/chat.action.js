@@ -15,8 +15,6 @@ export const getAllMeassges = () => async (dispatch) => {
 
         const { data } = await axios.get(`http://localhost:3001/api/v1/getAllMessages`);
 
-        console.log("actionnnnnnnnnn", data);
-
         dispatch({
             type: ALL_CHAT_SUCCESS,
             payload: data,

@@ -95,6 +95,7 @@ body {
   height: auto;
   padding: 10px;
   display: flex;
+  margin-bottom: 25px;
 }
 
 .chat-window .chat-body .message .message-content {
@@ -214,9 +215,12 @@ aside.emoji-picker-react {
   border-color: black !important;
 }
 .countUser {
-  /* width: 100px; */
   background-color: blue;
   font-size: 20px;
   color: white;
   border-radius: 50%;
+}
+
+.modal {
+  margin-left: 90%;
 }
