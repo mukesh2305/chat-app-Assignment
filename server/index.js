@@ -10,11 +10,8 @@ const connectDatabase = require("./config/db.connection");
 const ChatContent = require("./models/ChatContent.model");
 
 connectDatabase()
-// if (connectDatabase()) {
-// console.log("Database connected", connectDatabase());
-// }
-//////////////
 app.use(cors());
+
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -44,23 +41,12 @@ io.on("connection", (socket) => {
 
 
   socket.on("join_room", (data) => {
-    // console.log("data", data);
     socket.join(data);
     console.log(`room User with ID: ${socket.id} joined room: ${data}`);
   });
 
   socket.on("send_message", (data) => {
     socket.to(data.room).emit("receive_message", data);
-    console.log("data>>>>>>>>>>", data);
-    // connnect to database for saving the messages
-    // connectDatabase.then((db) => {
-    //   console.log("connected to database");
-    //   let chatMessage = new ChatContent({
-    //     message: data.message,
-    //     sender: data.author,
-    //   });
-    //   chatMessage.save();
-    // });
     let chatMessage = new ChatContent({
       message: data.message,
       sender: data.author,
@@ -73,11 +59,8 @@ io.on("connection", (socket) => {
 
 
   socket.on("disconnect", () => {
-    // count of disconnected users
     count = socket.client.conn.server.clientsCount;
     socket.broadcast.emit("counter", { count: count });
-
-    // console.log("User Disconnected", socket.id);
   });
 });
 
